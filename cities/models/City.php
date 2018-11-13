@@ -5,23 +5,22 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "user".
+ * This is the model class for table "city".
  *
  * @property int $id
- * @property string $fio
- * @property string $email
- * @property string $phone
+ * @property string $name
  * @property string $date_create
- * @property string $password
+ *
+ * @property Reviews[] $reviews
  */
-class User extends \yii\db\ActiveRecord
+class City extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'user';
+        return 'city';
     }
 
     /**
@@ -30,9 +29,9 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fio'], 'required'],
+            [['name'], 'required'],
             [['date_create'], 'safe'],
-            [['fio', 'email', 'phone', 'password'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
         ];
     }
 
@@ -43,11 +42,16 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'fio' => 'Fio',
-            'email' => 'Email',
-            'phone' => 'Phone',
+            'name' => 'Name',
             'date_create' => 'Date Create',
-            'password' => 'Password',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getReviews()
+    {
+        return $this->hasMany(Reviews::className(), ['id_city' => 'id']);
     }
 }

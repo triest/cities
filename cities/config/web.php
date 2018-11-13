@@ -51,6 +51,22 @@ $config = [
             ],
         ],
 
+
+    ],
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+        ],
+        'city' => [
+            'class' => 'app\modules\city\Module',
+        ],
+        'review' => [
+            'class' => 'app\modules\review\Module',
+        ],
+        'users' => [
+            'class' => 'app\modules\users\Module',
+        ],
+
     ],
     'params' => $params,
 ];
