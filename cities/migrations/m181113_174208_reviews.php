@@ -17,7 +17,8 @@ class m181113_174208_reviews extends Migration
             'id_city'=>$this->integer()->notNull(),
             'title'=>$this->text()->notNull(),
             'rating'=>$this->integer(),
-             'photo'=>$this->string(),
+             'img'=>$this->string(),
+             'id_autor'=>$this->integer(),
             'date_create'=>$this->dateTime('Y-m-d H:i:s'),
         ]);
 
@@ -36,7 +37,25 @@ class m181113_174208_reviews extends Migration
             'id',
             'CASCADE'
         );
+
+        // creates index for column `id_city`
+        $this->createIndex(
+            'idx-reviews-id_author',
+            'reviews',
+            'id_autor'
+        );
+        // add foreign key for table `city`
+        $this->addForeignKey(
+            'fk-city-id_autor',
+            'reviews',
+            'id_autor',
+            'users',
+            'id',
+            'CASCADE'
+        );
     }
+
+
 
     /**
      * {@inheritdoc}

@@ -12,7 +12,7 @@ class m181113_175913_user extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('user', [
+        $this->createTable('users', [
             'id' => $this->primaryKey(),
             'fio'=>$this->string()->notNull(),
             'email'=>$this->string()->defaultValue(null),
